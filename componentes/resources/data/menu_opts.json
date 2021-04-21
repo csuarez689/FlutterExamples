@@ -30,6 +30,11 @@
             "ruta":"slider",
             "icon":"sync_alt_outlined",
             "texto": "Slider"
+        },
+        {
+            "ruta":"listView",
+            "icon":"list_alt_rounded",
+            "texto": "List View Builder"
         }
     ]
 }
