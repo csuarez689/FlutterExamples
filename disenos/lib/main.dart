@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Diseños',
       debugShowCheckedModeBanner: false,
       routes: getApplicationRoutes(),
-      initialRoute: 'basicDesign',
+      initialRoute: 'scrollDesign',
       onGenerateRoute: (settings) =>
           MaterialPageRoute(builder: (BuildContext context) => ErrorPage()),
     );
