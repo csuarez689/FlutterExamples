@@ -4,20 +4,6 @@ import 'package:peliculas/src/providers/movies_provider.dart';
 
 class DataSearch extends SearchDelegate {
   final _moviesProvider = new MoviesProvider();
-  final _peliculas = [
-    'Spiderman',
-    'Linterna Verde',
-    'Capitan America',
-    'Batman',
-    'Superman',
-    'Avengers',
-    'Nobody',
-    'Tom & Jerry',
-    'Mortal Kombat',
-    'Monster Hunter',
-    'Justice League'
-  ];
-  final _recientes = ['Spiderman', 'Capitan America'];
 
   // Las acciones del widget de busqueda
   @override
