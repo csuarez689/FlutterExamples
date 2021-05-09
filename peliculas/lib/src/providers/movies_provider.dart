@@ -6,7 +6,7 @@ import 'package:peliculas/src/models/movie_model.dart';
 import 'package:http/http.dart' as http;
 
 class MoviesProvider {
-  final _apiKey = '';
+  final _apiKey = 'd8c80175688ed2ddcc2478abf529dc7e';
   final _baseUrl = 'api.themoviedb.org';
   final _language = 'es-ES';
   bool _isLoading = false;
