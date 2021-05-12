@@ -4,7 +4,18 @@ import 'package:flutter/material.dart';
 class Provider extends InheritedWidget {
   final loginBloc = LoginBloc();
 
-  Provider({Key key, @required Widget child}) : super(key: key, child: child);
+  static Provider _instance;
+
+  factory Provider({Key key, @required Widget child}) {
+    if (_instance == null)
+      _instance = new Provider._internal(key: key, child: child);
+    return _instance;
+  }
+
+  Provider._internal({Key key, @required Widget child})
+      : super(key: key, child: child);
+
+  // Provider({Key key, @required Widget child}) : super(key: key, child: child);
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;

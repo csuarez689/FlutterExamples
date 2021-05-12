@@ -1,4 +1,6 @@
+import 'package:bloc_forms_validation/blocs/login_bloc.dart';
 import 'package:bloc_forms_validation/blocs/provider.dart';
+import 'package:bloc_forms_validation/pages/home_page.dart';
 import 'package:bloc_forms_validation/widgets/stream_elevated_button.dart';
 import 'package:bloc_forms_validation/widgets/stream_input_form.dart';
 import 'package:bloc_forms_validation/widgets/stack_background_header.dart';
@@ -95,7 +97,7 @@ class LoginPage extends StatelessWidget {
                     'Ingresar',
                     style: TextStyle(fontSize: 20.0),
                   ),
-                  onPressed: () {},
+                  onPressed: () => _loginAction(context, bloc),
                   stream: bloc.validFormStream,
                 ),
               ],
@@ -112,5 +114,13 @@ class LoginPage extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  _loginAction(BuildContext context, LoginBloc bloc) {
+    print('=======================================');
+    print('Email: ${bloc.email}');
+    print('Password: ${bloc.password}');
+    print('=======================================');
+    Navigator.pushReplacementNamed(context, HomePage.routeName);
   }
 }
