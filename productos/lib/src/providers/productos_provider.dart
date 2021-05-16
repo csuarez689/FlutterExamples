@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:formvalidation/src/preferences/preferencias_usuario.dart';
 import 'package:http/http.dart' as http;
 import 'package:http_parser/http_parser.dart';
 
@@ -11,33 +12,26 @@ import 'package:formvalidation/src/models/producto_model.dart';
 class ProductosProvider {
   final String _url =
       'https://flutter-product-66b14-default-rtdb.firebaseio.com';
+  final _prefs = new PreferenciasUsuario();
 
   Future<bool> crearProducto(ProductoModel producto) async {
-    final url = '$_url/productos.json';
+    final url = '$_url/productos.json?auth=${_prefs.token}';
 
-    final resp = await http.post(url, body: productoModelToJson(producto));
-
-    final decodedData = json.decode(resp.body);
-
-    print(decodedData);
+    await http.post(url, body: productoModelToJson(producto));
 
     return true;
   }
 
   Future<bool> editarProducto(ProductoModel producto) async {
-    final url = '$_url/productos/${producto.id}.json';
+    final url = '$_url/productos/${producto.id}.json?auth=${_prefs.token}';
 
-    final resp = await http.put(url, body: productoModelToJson(producto));
-
-    final decodedData = json.decode(resp.body);
-
-    print(decodedData);
+    await http.put(url, body: productoModelToJson(producto));
 
     return true;
   }
 
   Future<List<ProductoModel>> cargarProductos() async {
-    final url = '$_url/productos.json';
+    final url = '$_url/productos.json?auth=${_prefs.token}';
     final resp = await http.get(url);
 
     final Map<String, dynamic> decodedData = json.decode(resp.body);
@@ -51,17 +45,12 @@ class ProductosProvider {
 
       productos.add(prodTemp);
     });
-
-    // print( productos[0].id );
-
     return productos;
   }
 
   Future<int> borrarProducto(String id) async {
-    final url = '$_url/productos/$id.json';
-    final resp = await http.delete(url);
-
-    print(resp.body);
+    final url = '$_url/productos/$id.json?auth=${_prefs.token}';
+    await http.delete(url);
 
     return 1;
   }
@@ -82,13 +71,10 @@ class ProductosProvider {
     final resp = await http.Response.fromStream(streamResponse);
 
     if (resp.statusCode != 200 && resp.statusCode != 201) {
-      print('Algo salio mal');
-      print(resp.body);
       return null;
     }
 
     final respData = json.decode(resp.body);
-    print(respData);
 
     return respData['secure_url'];
   }

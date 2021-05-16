@@ -140,17 +140,9 @@ class _ProductoPageState extends State<ProductoPage> {
     }
 
     // setState(() {_guardando = false; });
-    mostrarSnackbar('Registro guardado');
+    utils.mostrarSnackbar(context, 'Registro guardado');
 
     Navigator.pop(context);
-  }
-
-  void mostrarSnackbar(String mensaje) {
-    final snack = SnackBar(
-      content: Text(mensaje),
-      duration: Duration(seconds: 2),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(snack);
   }
 
   Widget _mostrarFoto() {
