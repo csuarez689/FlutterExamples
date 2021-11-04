@@ -1,3 +1,4 @@
+import 'package:disenos2/src/pages/animaciones_page.dart';
 import 'package:disenos2/src/pages/headers_page.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HeadersPage(),
+      // home: const HeadersPage(),
+      home: const AnimacionesPage(),
     );
   }
 }
