@@ -1,5 +1,6 @@
 import 'package:disenos2/src/challenges/cuadrado_animado_page.dart';
 import 'package:disenos2/src/pages/animaciones_page.dart';
+import 'package:disenos2/src/pages/circular_graphs_page.dart';
 import 'package:disenos2/src/pages/headers_page.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // home: const HeadersPage(),
-      home: CuadradoAnimadoPage(),
+      home: CircularGraphPage(),
     );
   }
 }
