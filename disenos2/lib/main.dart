@@ -6,12 +6,10 @@ import 'package:disenos2/src/pages/slideshow_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,6 +18,7 @@ class MyApp extends StatelessWidget {
       title: 'Diseños App',
       theme: ThemeData(
         primarySwatch: Colors.pink,
+        disabledColor: Colors.pink.shade100,
       ),
       // home: const HeadersPage(),
       home: SlideshowPage(),
