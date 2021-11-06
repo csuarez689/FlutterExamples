@@ -5,6 +5,7 @@ import 'package:disenos2/src/pages/emergency_page.dart';
 import 'package:disenos2/src/pages/headers_page.dart';
 import 'package:disenos2/src/pages/pinterest_page.dart';
 import 'package:disenos2/src/pages/slideshow_page.dart';
+import 'package:disenos2/src/pages/slivers_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
       // home: CuadradoAnimadoPage(),
       // home: AnimacionesPage(),
       // home: PinterestPage(),
-      home: EmergencyPage(),
+      // home: EmergencyPage(),
+      home: SliversPage(),
     );
   }
 }
