@@ -1,20 +1,19 @@
-import 'package:disenos2/src/challenges/cuadrado_animado_page.dart';
-import 'package:disenos2/src/pages/animaciones_page.dart';
-import 'package:disenos2/src/pages/circular_graphs_page.dart';
-import 'package:disenos2/src/pages/emergency_page.dart';
-import 'package:disenos2/src/pages/headers_page.dart';
-import 'package:disenos2/src/pages/launcher_page.dart';
-import 'package:disenos2/src/pages/pinterest_page.dart';
-import 'package:disenos2/src/pages/slideshow_page.dart';
-import 'package:disenos2/src/pages/slivers_page.dart';
-import 'package:disenos2/src/theme/theme_changer.dart';
 import 'package:flutter/material.dart';
+
 import 'package:provider/provider.dart';
+import 'package:disenos2/src/theme/theme_changer.dart';
+import 'package:disenos2/src/models/layout_model.dart';
+
+import 'package:disenos2/src/pages/launcher_page.dart';
+import 'package:disenos2/src/pages/launcher_tablet_page.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeChanger(2),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeChanger(2)),
+        ChangeNotifierProvider(create: (_) => LayoutModel())
+      ],
       child: MyApp(),
     ),
   );
@@ -37,7 +36,12 @@ class MyApp extends StatelessWidget {
       // home: PinterestPage(),
       // home: EmergencyPage(),
       // home: SliversPage(),
-      home: LauncherPage(),
+      home: OrientationBuilder(
+        builder: (context, Orientation orientation) {
+          final size = MediaQuery.of(context).size;
+          return size.width > 500 ? LauncherTabletPage() : LauncherPage();
+        },
+      ),
     );
   }
 }

@@ -7,7 +7,8 @@ import 'package:provider/provider.dart';
 class PinterestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    double width = MediaQuery.of(context).size.width;
+    width = width > 500 ? width - 300 : width;
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return ChangeNotifierProvider(
       create: (_) => new _MenuModel(),
@@ -21,22 +22,27 @@ class PinterestPage extends StatelessWidget {
                 bottom: 30,
                 child: Container(
                   width: width,
-                  child: Align(
-                    child: PinterestMenu(
-                      show: show,
-                      bgColor: appTheme.scaffoldBackgroundColor,
-                      activeColor: appTheme.colorScheme.secondary,
-                      inactiveColor: appTheme.colorScheme.secondary.withOpacity(0.5),
-                      items: <PinterestButton>[
-                        PinterestButton(onPressed: () => print('pie_chart'), icon: Icons.pie_chart),
-                        PinterestButton(onPressed: () => print('search'), icon: Icons.search),
-                        PinterestButton(
-                            onPressed: () => print('notifications'), icon: Icons.notifications),
-                        PinterestButton(
-                            onPressed: () => print('supervised_user_circle'),
-                            icon: Icons.supervised_user_circle)
-                      ],
-                    ),
+                  child: Row(
+                    children: [
+                      Spacer(),
+                      PinterestMenu(
+                        show: show,
+                        bgColor: appTheme.scaffoldBackgroundColor,
+                        activeColor: appTheme.colorScheme.secondary,
+                        inactiveColor: appTheme.colorScheme.secondary.withOpacity(0.5),
+                        items: <PinterestButton>[
+                          PinterestButton(
+                              onPressed: () => print('pie_chart'), icon: Icons.pie_chart),
+                          PinterestButton(onPressed: () => print('search'), icon: Icons.search),
+                          PinterestButton(
+                              onPressed: () => print('notifications'), icon: Icons.notifications),
+                          PinterestButton(
+                              onPressed: () => print('supervised_user_circle'),
+                              icon: Icons.supervised_user_circle)
+                        ],
+                      ),
+                      Spacer(),
+                    ],
                   ),
                 ),
               ),
@@ -78,14 +84,15 @@ class _PinterestGridState extends State<PinterestGrid> {
 
   @override
   Widget build(BuildContext context) {
+    int rows = MediaQuery.of(context).size.width > 500 ? 3 : 2;
     return StaggeredGridView.countBuilder(
       controller: scrollController,
-      crossAxisCount: 4,
+      crossAxisCount: rows,
       itemCount: items.length,
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
       itemBuilder: (BuildContext context, int index) => PinterestGridItem(index),
-      staggeredTileBuilder: (int index) => StaggeredTile.count(2, index.isEven ? 2 : 3),
+      staggeredTileBuilder: (int index) => StaggeredTile.count(1, index.isEven ? 1 : 2),
     );
   }
 }

@@ -22,22 +22,20 @@ class EmergencyHeader extends StatelessWidget {
         _IconHeaderBackground(bgColor1, bgColor2),
         Positioned(
           top: -50,
-          left: -70,
-          child: FaIcon(icon, size: 250, color: Colors.white.withOpacity(0.2)),
+          left: -50,
+          child: FaIcon(icon, size: 190, color: Colors.white.withOpacity(0.2)),
         ),
         Column(
           children: <Widget>[
-            SizedBox(height: 80, width: double.infinity),
+            SizedBox(height: 40, width: double.infinity),
             Text(
               subtitle,
-              style: TextStyle(
-                  color: textWhite, fontSize: 20, fontWeight: FontWeight.w500),
+              style: TextStyle(color: textWhite, fontSize: 20, fontWeight: FontWeight.w500),
             ),
             SizedBox(height: 20),
             Text(
               title,
-              style: TextStyle(
-                  color: textWhite, fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(color: textWhite, fontSize: 25, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 20),
             FaIcon(icon, size: 80, color: Colors.white.withOpacity(0.9)),
@@ -57,7 +55,7 @@ class _IconHeaderBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      height: 300,
+      height: 230,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(80)),
         gradient: LinearGradient(

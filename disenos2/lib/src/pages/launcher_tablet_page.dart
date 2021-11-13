@@ -1,3 +1,5 @@
+import 'package:disenos2/src/models/layout_model.dart';
+import 'package:disenos2/src/pages/slideshow_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -6,18 +8,25 @@ import 'package:provider/provider.dart';
 import 'package:disenos2/src/routes/routes.dart';
 import 'package:disenos2/src/theme/theme_changer.dart';
 
-class LauncherPage extends StatelessWidget {
+class LauncherTabletPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+    final page = Provider.of<LayoutModel>(context).currentPage;
     print(appTheme.appBarTheme.backgroundColor);
     return Scaffold(
       appBar: AppBar(
-        title: Text('Diseños en Flutter - Phone'),
+        title: Text('Diseños en Flutter - Tablet'),
         backgroundColor: appTheme.colorScheme.secondary,
       ),
       drawer: _MenuPrincipal(),
-      body: _ListaOpciones(),
+      body: Row(
+        children: [
+          Container(width: 300, height: double.infinity, child: _ListaOpciones()),
+          Container(width: 2, height: double.infinity, color: appTheme.dividerColor),
+          Expanded(child: page),
+        ],
+      ),
     );
   }
 }
@@ -80,6 +89,8 @@ class _ListaOpciones extends StatelessWidget {
   Widget build(BuildContext context) {
     final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     final accentColor = appTheme.colorScheme.secondary;
+    final layoutModel = Provider.of<LayoutModel>(context);
+
     return ListView.separated(
       physics: BouncingScrollPhysics(),
       separatorBuilder: (context, index) => Divider(color: appTheme.primaryColorLight),
@@ -89,7 +100,7 @@ class _ListaOpciones extends StatelessWidget {
         title: Text(pageRoutes[i].title),
         trailing: FaIcon(FontAwesomeIcons.chevronRight, color: accentColor),
         onTap: () {
-          Navigator.push(context, CupertinoPageRoute(builder: (context) => pageRoutes[i].page));
+          layoutModel.currentPage = pageRoutes[i].page;
         },
       ),
     );
