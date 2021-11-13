@@ -7,11 +7,7 @@ class SliversPage extends StatelessWidget {
       body: Stack(
         children: [
           _MainScroll(),
-          Positioned(
-            child: _BottomNavigaror(),
-            bottom: -10,
-            right: -2,
-          ),
+          Positioned(child: _BottomNavigaror(), bottom: -10, right: -2),
         ],
       ),
     );
@@ -33,7 +29,8 @@ class _BottomNavigaror extends StatelessWidget {
         ),
         child: Text(
           'CREATE NEW LIST',
-          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 3),
+          style: TextStyle(
+              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold, letterSpacing: 3),
         ),
       ),
       width: size.width * 0.6,
@@ -59,7 +56,8 @@ class _Item extends StatelessWidget {
         color: bgColor,
         borderRadius: BorderRadius.circular(30),
       ),
-      child: Text(title, style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
+      child: Text(title,
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 20)),
     );
   }
 }
@@ -73,14 +71,19 @@ class _Title extends StatelessWidget {
           SizedBox(height: 30),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-            child: Text('Title', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Color(0xff532128))),
+            child: Text('Title',
+                style:
+                    TextStyle(fontSize: 50, fontWeight: FontWeight.bold, color: Color(0xff532128))),
           ),
           Stack(
             children: <Widget>[
               SizedBox(width: 100),
-              Positioned(bottom: 6, child: Container(width: 75, height: 8, color: Color(0xfff7cdd5))),
+              Positioned(
+                  bottom: 6, child: Container(width: 75, height: 8, color: Color(0xfff7cdd5))),
               Container(
-                child: Text('List', style: TextStyle(color: Color(0xffd93a39), fontSize: 40, fontWeight: FontWeight.bold)),
+                child: Text('List',
+                    style: TextStyle(
+                        color: Color(0xffd93a39), fontSize: 40, fontWeight: FontWeight.bold)),
               ),
             ],
           ),
@@ -119,7 +122,8 @@ class _MainScroll extends StatelessWidget {
             delegate: _SliverCustomHeaderDelegate(
               minHeight: 180,
               maxHeight: 220,
-              child: Container(alignment: Alignment.centerLeft, color: Colors.white, child: _Title()),
+              child:
+                  Container(alignment: Alignment.centerLeft, color: Colors.white, child: _Title()),
             )),
         SliverList(
           delegate: SliverChildListDelegate([
@@ -133,7 +137,8 @@ class _MainScroll extends StatelessWidget {
 }
 
 class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
-  _SliverCustomHeaderDelegate({required this.minHeight, required this.maxHeight, required this.child});
+  _SliverCustomHeaderDelegate(
+      {required this.minHeight, required this.maxHeight, required this.child});
 
   final double minHeight;
   final double maxHeight;
@@ -152,6 +157,8 @@ class _SliverCustomHeaderDelegate extends SliverPersistentHeaderDelegate {
 
   @override
   bool shouldRebuild(covariant _SliverCustomHeaderDelegate oldDelegate) {
-    return maxHeight != oldDelegate.maxHeight || minHeight != oldDelegate.minHeight || child != oldDelegate.child;
+    return maxHeight != oldDelegate.maxHeight ||
+        minHeight != oldDelegate.minHeight ||
+        child != oldDelegate.child;
   }
 }

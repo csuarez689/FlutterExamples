@@ -1,3 +1,4 @@
+import 'package:disenos2/src/theme/theme_changer.dart';
 import 'package:disenos2/src/widgets/pinterest_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
@@ -7,6 +8,7 @@ class PinterestPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
     return ChangeNotifierProvider(
       create: (_) => new _MenuModel(),
       child: Scaffold(
@@ -22,19 +24,14 @@ class PinterestPage extends StatelessWidget {
                   child: Align(
                     child: PinterestMenu(
                       show: show,
-                      bgColor: Colors.white,
-                      activeColor: Colors.pink,
-                      inactiveColor: Colors.pink[200]!,
+                      bgColor: appTheme.scaffoldBackgroundColor,
+                      activeColor: appTheme.colorScheme.secondary,
+                      inactiveColor: appTheme.colorScheme.secondary.withOpacity(0.5),
                       items: <PinterestButton>[
+                        PinterestButton(onPressed: () => print('pie_chart'), icon: Icons.pie_chart),
+                        PinterestButton(onPressed: () => print('search'), icon: Icons.search),
                         PinterestButton(
-                            onPressed: () => print('pie_chart'),
-                            icon: Icons.pie_chart),
-                        PinterestButton(
-                            onPressed: () => print('search'),
-                            icon: Icons.search),
-                        PinterestButton(
-                            onPressed: () => print('notifications'),
-                            icon: Icons.notifications),
+                            onPressed: () => print('notifications'), icon: Icons.notifications),
                         PinterestButton(
                             onPressed: () => print('supervised_user_circle'),
                             icon: Icons.supervised_user_circle)
@@ -87,10 +84,8 @@ class _PinterestGridState extends State<PinterestGrid> {
       itemCount: items.length,
       mainAxisSpacing: 4.0,
       crossAxisSpacing: 4.0,
-      itemBuilder: (BuildContext context, int index) =>
-          PinterestGridItem(index),
-      staggeredTileBuilder: (int index) =>
-          StaggeredTile.count(2, index.isEven ? 2 : 3),
+      itemBuilder: (BuildContext context, int index) => PinterestGridItem(index),
+      staggeredTileBuilder: (int index) => StaggeredTile.count(2, index.isEven ? 2 : 3),
     );
   }
 }
@@ -111,10 +106,7 @@ class PinterestGridItem extends StatelessWidget {
           backgroundColor: Colors.white,
           child: Text(
             '$index',
-            style: TextStyle(
-                fontSize: 20,
-                color: Colors.blueAccent,
-                fontWeight: FontWeight.bold),
+            style: TextStyle(fontSize: 20, color: Colors.blueAccent, fontWeight: FontWeight.bold),
           ),
         ),
       ),

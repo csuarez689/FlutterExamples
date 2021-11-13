@@ -1,10 +1,14 @@
+import 'package:disenos2/src/theme/theme_changer.dart';
 import 'package:disenos2/src/widgets/custom_slideshow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class SlideshowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+
     return Scaffold(
       body: SafeArea(
         child: CustomSlideshow(
@@ -15,8 +19,8 @@ class SlideshowPage extends StatelessWidget {
             SvgPicture.asset('assets/svgs/slide-4.svg'),
             SvgPicture.asset('assets/svgs/slide-5.svg'),
           ],
-          activeColor: Theme.of(context).colorScheme.secondary,
-          inactiveColor: Theme.of(context).disabledColor,
+          activeColor: appTheme.colorScheme.secondary,
+          inactiveColor: appTheme.disabledColor,
           activeBulletSize: 14,
           inactiveBulletSize: 10,
         ),

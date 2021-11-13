@@ -1,9 +1,9 @@
 {
-	"html.format.wrapLineLength": 160,
-	"dart.lineLength": 160,
+	"html.format.wrapLineLength": 100,
+	"dart.lineLength": 100,
 	"[dart]": {
-		"editor.rulers": [160]
+		"editor.rulers": [100]
 	},
-	"bladeFormatter.format.wrapLineLength": 160,
-	"editor.wordWrapColumn": 160
+	"bladeFormatter.format.wrapLineLength": 100,
+	"editor.wordWrapColumn": 100
 }

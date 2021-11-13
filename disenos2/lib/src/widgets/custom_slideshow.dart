@@ -66,10 +66,8 @@ class _Dot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ssModel = Provider.of<_SliderModel>(context);
-    final isSelected = ssModel.currentPage >= index - 0.5 &&
-        ssModel.currentPage <= index + 0.5;
-    final size =
-        isSelected ? ssModel.activeBulletSize : ssModel.inactiveBulletSize;
+    final isSelected = ssModel.currentPage >= index - 0.5 && ssModel.currentPage <= index + 0.5;
+    final size = isSelected ? ssModel.activeBulletSize : ssModel.inactiveBulletSize;
     return AnimatedContainer(
       duration: Duration(milliseconds: 200),
       width: size,
@@ -91,7 +89,7 @@ class _Slides extends StatefulWidget {
 }
 
 class _SlidesState extends State<_Slides> {
-  final pageViewController = new PageController();
+  final pageViewController = PageController();
 
   @override
   void dispose() {
@@ -110,11 +108,9 @@ class _SlidesState extends State<_Slides> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: PageView(
-        controller: pageViewController,
-        children: widget.childrens.map((child) => _Slide(child)).toList(),
-      ),
+    return PageView(
+      controller: pageViewController,
+      children: widget.childrens.map((child) => _Slide(child)).toList(),
     );
   }
 }

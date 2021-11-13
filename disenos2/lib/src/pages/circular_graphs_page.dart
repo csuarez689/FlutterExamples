@@ -1,5 +1,7 @@
+import 'package:disenos2/src/theme/theme_changer.dart';
 import 'package:disenos2/src/widgets/radial_progress.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CircularGraphPage extends StatefulWidget {
   @override
@@ -10,10 +12,11 @@ class _CircularGraphPageState extends State<CircularGraphPage> {
   double percentage = 0.0;
   @override
   Widget build(BuildContext context) {
+    final appTheme = Provider.of<ThemeChanger>(context).currentTheme;
+
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.refresh),
-        backgroundColor: Colors.pink,
         onPressed: () {
           setState(() {
             percentage += 10;
@@ -29,10 +32,10 @@ class _CircularGraphPageState extends State<CircularGraphPage> {
           height: 200,
           child: RadialProgress(
             percentage: percentage,
-            primaryColor: Colors.pinkAccent,
-            secondaryColor: Colors.grey,
-            primaryStrokeWidth: 10,
-            secondaryStrokeWidth: 10,
+            primaryColor: appTheme.colorScheme.secondary,
+            secondaryColor: appTheme.disabledColor.withOpacity(0.5),
+            primaryStrokeWidth: 12,
+            secondaryStrokeWidth: 7,
           ),
         ),
       ),

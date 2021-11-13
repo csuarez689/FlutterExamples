@@ -3,13 +3,21 @@ import 'package:disenos2/src/pages/animaciones_page.dart';
 import 'package:disenos2/src/pages/circular_graphs_page.dart';
 import 'package:disenos2/src/pages/emergency_page.dart';
 import 'package:disenos2/src/pages/headers_page.dart';
+import 'package:disenos2/src/pages/launcher_page.dart';
 import 'package:disenos2/src/pages/pinterest_page.dart';
 import 'package:disenos2/src/pages/slideshow_page.dart';
 import 'package:disenos2/src/pages/slivers_page.dart';
+import 'package:disenos2/src/theme/theme_changer.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => ThemeChanger(2),
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -19,10 +27,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Diseños App',
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-        disabledColor: Colors.pink.shade100,
-      ),
+      theme: Provider.of<ThemeChanger>(context).currentTheme,
+
       // home: HeadersPage(),
       // home:CircularGraphPage(),
       // home: SlideshowPage(),
@@ -30,7 +36,8 @@ class MyApp extends StatelessWidget {
       // home: AnimacionesPage(),
       // home: PinterestPage(),
       // home: EmergencyPage(),
-      home: SliversPage(),
+      // home: SliversPage(),
+      home: LauncherPage(),
     );
   }
 }
